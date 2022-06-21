@@ -4,7 +4,7 @@ import "./PostedComment.css";
 
 import moment from "moment";
 
-const PostedComment = ({ commentArray, comment }) => {
+const PostedComment = ({ commentArray, setCommentArray, comment }) => {
   const [counter, setCounter] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -37,8 +37,13 @@ const PostedComment = ({ commentArray, comment }) => {
                     <p className="message__date">
                       {moment(comment.createdAt).format("MMM DD, YYYY hh:mm")}
                     </p>
-                    <button>Delete</button>
-                    <button onClick={() => setIsEditing(true)}>Edit</button>
+                    <button className="delete__button" onClick={() => {
+                        const comments = [...commentArray];
+                        comments.splice(index, 1);
+                        setCommentArray(comments);
+                        console.log(commentArray);
+                    }}>Delete</button>
+                    <button className="edit__button" onClick={() => setIsEditing(true)}>Edit</button>
                   </div>
 
                   <p className="user__message">{updateClicked ? `${newMessage}` : `${comment.message}`}</p>
@@ -56,7 +61,7 @@ const PostedComment = ({ commentArray, comment }) => {
       {commentArray.map((comment, index) => {
         return (
           <div key={index} className="comment__container">
-            <div className="comment__post">
+            <div className="comment__post-edit">
               {/* <div className="counter__component">
                         <button onClick={handleCounterAdd}>+</button>
                         {counter}
@@ -69,11 +74,11 @@ const PostedComment = ({ commentArray, comment }) => {
                   <p className="message__date">
                     {moment(comment.createdAt).format("MMM DD, YYYY hh:mm")}
                   </p>
-                  <button>Delete</button>
-                  <button>Edit</button>
+                  <div></div>
+                  <div></div>
                 </div>
                 <textarea
-                  className="user__message"
+                  className="user__edit"
                   value={newMessage}
                   onChange={(e) => {
                     setNewMessage(e.target.value);
@@ -83,6 +88,7 @@ const PostedComment = ({ commentArray, comment }) => {
                   {comment.message}
                 </textarea>
                 <button
+                className="update__button"
                   onClick={() => {
                     setIsEditing(false);
                     setNewMessage(newMessage);

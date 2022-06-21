@@ -19,6 +19,20 @@
   margin-top: 25px;
 }
 
+.comment__post-edit {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    justify-content: space-around;
+    padding: 15px;
+    height: 225px;
+    border-radius: 15px;
+    background: #ffffff;
+    box-shadow: 20px 20px 60px #bebebe, -20px -20px 60px #ffffff;
+    margin-bottom: 15px;
+    margin-top: 25px;
+  }
+
 .user__info {
   display: flex;
   flex-direction: row;
@@ -60,4 +74,38 @@
 .counter__component {
   display: flex;
   flex-direction: column;
+}
+
+.delete__button {
+    background: none;
+    border: none;
+    color: red;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.delete__button:hover {
+    color: darkred;
+}
+
+.edit__button {
+    background: none;
+    border: none;
+    color: blue;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.edit__button:hover {
+    color: darkblue;
+}
+
+.user__edit {
+    margin-top: 15px;
+}
+
+.update__button {
+    margin-top: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px;
 }

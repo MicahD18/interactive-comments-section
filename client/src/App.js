@@ -26,6 +26,7 @@ const App = () => {
       />
       <PostedComment
         commentArray={commentArray}
+        setCommentArray={setCommentArray}
         comment={comment}
       />
     </div>
