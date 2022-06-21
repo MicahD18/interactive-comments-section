@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import "./AddComment.css";
 
-import { Button } from "@material-ui/core";
-
 import profileIcon from "../../assets/profile-pic.png";
 
-const AddComment = (props) => {
-  const { comment, commentArray, setComment, setCommentArray } = props;
+const AddComment = ({comment, commentArray, setComment, setCommentArray, image, commentId, setCommentId}) => {
 
   const handleSend = (e) => {
     e.preventDefault();
-    commentArray.push({ message: `${props.comment}` });
-    setCommentArray(props.commentArray);
-    console.log(props.commentArray);
+    setCommentId(commentId + 1);
+    commentArray.push({ id: commentId, message: `${comment}`, image: image });
+    setCommentArray(commentArray);
+    console.log(commentArray);
     setComment("");
   };
 
@@ -20,15 +18,16 @@ const AddComment = (props) => {
     <div className="comment__container">
       <div className="comment__form">
         <img className="profile__icon" src={profileIcon} alt="profile-icon" />
-        <input
+        <textarea
           className="comment__input"
           placeholder="Add a comment..."
           value={comment}
           onChange={(e) => {
             setComment(e.target.value);
-            console.log(props.comment);
+            console.log(comment);
+
           }}
-        ></input>
+        ></textarea>
         <button className="send__button" onClick={handleSend}>
           Send
         </button>
